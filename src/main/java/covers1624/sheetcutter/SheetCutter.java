@@ -15,20 +15,28 @@ public class SheetCutter {
 	public static File curFolder = new File(System.getProperty("user.dir"));
 	private static File outFolder;
 	private static File inFile;
+	private static boolean debug;
 
 	public static void main(String[] args) {
 		for (int i = 0; i < args.length; i++) {
 			String arg = args[i];
-			if (arg.equals("-help") || arg.equals("--help")) {
+			switch (arg) {
+			case "-help":
+			case "--help":
 				System.out.println("Help for ItemSheetCutter:");
 				System.out.println("-in <FileName> : Specifies the input file. it will only grab input files from the current directory.");
 				System.out.println("-res <TexPackSize> : For example, normal minecraft assets are in 16x16 format, you may have a texture pack for 128x128, Specify that here or it will default to 16.");
 				System.out.println("All cut textures will be placed in /out/<InFileName>/");
-			}
-			if (arg.equals("-in")) {
+				System.exit(0);
+			case "-in":
 				inFile = new File(curFolder, args[i + 1]);
-			} else if (arg.equals("-res")) {
+				break;
+			case "-res":
 				splitSize = Integer.valueOf(args[i + 1]);
+				break;
+			case "-debug":
+				debug = true;
+				break;
 			}
 		}
 		if (inFile == null || !inFile.exists()){
@@ -87,7 +95,7 @@ public class SheetCutter {
 		int v = 0;
 		for (int i = 0; i < 16; i++) {//V
 			for (int j = 0; j < 16; j++) {//U
-				System.out.println(String.format("U: %s V: %s", u, v));
+				//System.out.println(String.format("U: %s V: %s", u, v));
 				saveImage(crop(bufferedImage, u, v), origionalFileName + "-" + v + "-" + u);
 				u += splitSize;
 			}
