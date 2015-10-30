@@ -7,11 +7,11 @@ Args:
 ```
 	-in <FileName> : Specifies the input file. it will only grab input files from the current directory.
 	-res <TexPackSize> : For example, normal minecraft assets are in 16x16 format, you may have a texture pack for 128x128, Specify that here or it will default to 16.
-All cut textures will be placed in /out/<InFileName>/
 ```
-
+All cut textures will be placed in /out/<InFileName>/
 
 An example of how to use it would be:
+
 	java -jar ItemSheetCutter.jar -in <file.png> -res 16
 	
 ALL RIGHTS RESERVED
